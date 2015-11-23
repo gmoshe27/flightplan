@@ -33,6 +33,9 @@ class Commute(object):
         day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
         json = response.json()
+        if json['status'] != 'OK':
+            print(json['status'])
+            raise Exception(json['error_message'])
         details = json["rows"][0]["elements"][0]
         line = "{0}, {1}, {2}, {3}\n".format(
             day_of_week[date.isoweekday()],
